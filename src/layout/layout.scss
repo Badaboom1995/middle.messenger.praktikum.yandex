@@ -1,0 +1,36 @@
+.layout {
+  display: flex;
+  height: 100vh;
+
+  &__section {
+    overflow: scroll;
+    &--menu {
+      width: 350px;
+      background: linear-gradient(167.22deg, #ffc683 4.9%, #fdd7aa 108.96%);
+    }
+    &--main {
+      position: relative;
+      flex-grow: 1;
+      background-color: #fff;
+    }
+    &--aside {
+      width: 300px;
+      background-color: #333;
+    }
+  }
+  &__main-default {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%);
+    width: 600px;
+    text-align: center;
+    &-quote {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #ababab;
+      margin-bottom: 30px;
+    }
+  }
+}

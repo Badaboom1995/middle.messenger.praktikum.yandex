@@ -1,0 +1,12 @@
+.reg {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(167.22deg, #ffc683 4.9%, #fdd7aa 108.96%);
+  &__content {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%);
+  }
+}

@@ -1,0 +1,21 @@
+.radio-group {
+  padding: 20px 0;
+  display: flex;
+  // justify-content: flex-start;
+  &__item {
+    margin-left: 10px;
+  }
+  &__radio {
+    display: none;
+  }
+  &__label {
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  &__radio:checked + &__label {
+    background-color: #3b3b3b;
+    color: #fff;
+  }
+}

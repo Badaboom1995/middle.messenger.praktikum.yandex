@@ -1,0 +1,25 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "default": "index.js",
+  "author": "Badavoo",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"./node_modules/.bin/parcel build index.html\" \"node ./server.js \"",
+    "dev": "./node_modules/.bin/parcel index.html",
+    "build": "./node_modules/.bin/parcel build index.html"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.0.1",
+    "@parcel/transformer-sass": "^2.0.1",
+    "autoprefixer": "^10.4.0",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "parcel": "^2.0.1",
+    "parcel-plugin-handlebars-precompile-ts": "^1.0.0",
+    "sass": "^1.43.4"
+  }
+}

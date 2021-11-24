@@ -1,0 +1,35 @@
+.page500 {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 250px 100px;
+  background-image: url("./assets/404.png");
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  &__title {
+    font-weight: 300;
+    font-size: 96px;
+    line-height: 22px;
+    color: #ffc683;
+    margin-bottom: 15px;
+  }
+  &__subtitle {
+    font-size: 36px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    color: #ffc683;
+    margin-bottom: 77px;
+  }
+  &__link {
+    font-size: 24px;
+    line-height: 22px;
+    text-decoration-line: underline;
+    color: #ffffff;
+  }
+}

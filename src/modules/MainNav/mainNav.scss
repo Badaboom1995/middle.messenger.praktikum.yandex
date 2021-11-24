@@ -1,0 +1,22 @@
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: scroll;
+  &__controls {
+    padding: 15px 10px;
+  }
+  &__controls-top {
+    display: flex;
+    align-items: center;
+  }
+  &__chats {
+    margin: 0;
+    flex-grow: 1;
+    padding: 15px;
+    padding-left: 30px;
+    li {
+      list-style: none;
+    }
+  }
+}
