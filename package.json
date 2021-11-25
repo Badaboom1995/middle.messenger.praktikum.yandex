@@ -5,11 +5,12 @@
   "author": "Badavoo",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"./node_modules/.bin/parcel build index.html\" \"node ./server.js \"",
+    "start": "concurrently \"yarn\" \"./node_modules/.bin/parcel build index.html\" \"node ./server.js \"",
     "dev": "./node_modules/.bin/parcel index.html",
     "build": "./node_modules/.bin/parcel build index.html"
   },
   "dependencies": {
+    "concurrently": "^6.4.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
