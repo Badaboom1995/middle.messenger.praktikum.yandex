@@ -1,5 +1,5 @@
 import avatar from "./assets/avatar.png";
-export default data = {
+const data = {
   people: [
     {
       name: "Nils",
@@ -35,3 +35,5 @@ export default data = {
     },
   ],
 };
+
+export default data;
