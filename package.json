@@ -5,9 +5,9 @@
   "author": "Badavoo",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"yarn\" \"./node_modules/.bin/parcel build index.html\" \"node ./server.js \"",
-    "dev": "./node_modules/.bin/parcel index.html",
-    "build": "./node_modules/.bin/parcel build index.html"
+    "start": "concurrently \"yarn\" \"./node_modules/.bin/parcel build static/index.html\" \"node ./server.js \"",
+    "dev": "./node_modules/.bin/parcel static/index.html",
+    "build": "./node_modules/.bin/parcel build static/index.html"
   },
   "dependencies": {
     "concurrently": "^6.4.0",
