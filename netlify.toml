@@ -11,5 +11,5 @@
 [[redirects]]
   from = "/auth"
   to = "/"
-  status = 301
-  force = true
+  status = 200
+  force = false
