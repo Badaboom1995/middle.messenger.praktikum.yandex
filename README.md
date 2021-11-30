@@ -14,6 +14,9 @@
 ## Роутинг
 
 baseUrl - https://eloquent-lamarr-732463.netlify.app/
+
 auth - /auth
+
 500 - /500
+
 404 - /\*
