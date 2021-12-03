@@ -1,12 +1,12 @@
-<nav class="main-nav">
-    <div class="main-nav__controls">
-        <div class="main-nav__controls-top"> 
+<nav class='main-nav'>
+    <div class='main-nav__controls'>
+        <div class='main-nav__controls-top'> 
             {{> BurgerMenu}}
             {{> TextInput}}
         </div>
         {{> RadioGroup}}
     </div>
-    <ul class="main-nav__chats">
+    <ul class='main-nav__chats'>
         {{#each people}}
             <li> {{> ChatCard}}</li>  
         {{/each}}

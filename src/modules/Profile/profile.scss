@@ -1,0 +1,69 @@
+@import '../../common/styles/colors.scss';
+
+.profile {
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+    &__avatar-wrapper {
+        width: 75px;
+        margin-bottom: 15px;
+    }
+    &__name {
+        font-size: 18px;
+        font-weight: 500;
+        color: $white;
+        text-align: center;
+        margin: 0;
+        margin-bottom: 5px;
+    }
+    &__status {
+        font-size: 14px;
+        color: $accent;
+    }
+    &__info-title {
+        position: relative;
+        z-index: 9;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        width: calc(100% + 35px);
+        padding: 5px;
+        padding-left: 50px;
+        margin-left: -35px;
+        margin-bottom: 30px;
+        background-color: $white;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px 0 0 5px;
+    }
+    &__info-title-text {
+        color: $black;
+        font-weight: 500;
+    }
+    &__info-title-button {
+        color: $black;
+        background-color: transparent;
+        border: none;
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    &__info-content {
+        padding: 0 15px;
+    }
+    &__base-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    &__base-name {
+        color: $white;
+        font-weight: 500;
+    }
+    &__base-value {
+        color: $white;
+        font-weight: 400;
+    }
+}

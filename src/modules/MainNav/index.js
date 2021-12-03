@@ -1,17 +1,14 @@
-import Handlebars from "handlebars";
-import tmpl from "./mainNav.hbs";
-import "./mainNav.scss";
-import connect from "../../utils/connect";
-import TextInput from "./components/TextInput";
-import ChatCard from "../../components/ChatCard";
-import RadioGroup from "./components/RadioGroup";
-import BurgerMenu from "./components/BurgerMenu";
-import context from "./context";
+import './mainNav.scss'
 
-connect([TextInput, ChatCard, RadioGroup, BurgerMenu]);
+import tmpl from './mainNav.hbs'
+import connect from '../../utils/connect'
+import TextInput from './components/TextInput'
+import ChatCard from '../../components/ChatCard'
+import RadioGroup from './components/RadioGroup'
+import BurgerMenu from './components/BurgerMenu'
+import context from './context'
+import createModule from '../../utils/createModule'
 
-const template = Handlebars.compile(tmpl);
-const MainNav = template(context);
-export default (function () {
-  Handlebars.registerPartial("MainNav", MainNav);
-});
+connect([TextInput, ChatCard, RadioGroup, BurgerMenu])
+
+export default createModule({ name: 'MainNav', template: tmpl, props: context })

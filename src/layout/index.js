@@ -1,11 +1,13 @@
-import Handlebars from "handlebars";
-import MainNav from "../modules/MainNav";
-import connect from "../utils/connect";
-import tmpl from "./layout.hbs";
-import "./layout.scss";
-connect([MainNav]);
+import Handlebars from 'handlebars'
+import tmpl from './layout.hbs'
+import './layout.scss'
+import Avatar from '../components/Avatar'
+import connect from '../utils/connect'
 
-const template = Handlebars.compile(tmpl);
-const Layout = template();
+connect([Avatar])
 
-export default Layout;
+export default ({ nav, main, aside }) => {
+    const template = Handlebars.compile(tmpl)
+    const Layout = template({ nav, main, aside })
+    return Layout
+}
