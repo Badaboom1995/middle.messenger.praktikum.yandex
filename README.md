@@ -10,11 +10,13 @@
 
 **Репо** https://github.com/Badaboom1995/middle.messenger.praktikum.yandex
 
-## Роутинг
+## Страницы
 
 baseUrl - https://eloquent-lamarr-732463.netlify.app/
 
-auth - /auth
+Вход - /auth
+
+Регистрация - /reg
 
 500 - /500
 
