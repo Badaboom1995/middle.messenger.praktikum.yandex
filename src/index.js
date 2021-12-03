@@ -2,9 +2,7 @@ import 'normalize.css'
 import './common/styles/colors.scss'
 import './common/styles/global.scss'
 import Enter from './pages/Enter'
-import Layout from './layout'
-import ErrorPage from './pages/ErrorPage'
-import MainNav from './modules/MainNav'
+import ErrorPage from './pages/Error'
 import Chats from './pages/Chats'
 
 const notFoundData = { title: '404', subtitle: 'Потерялись' }
