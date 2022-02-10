@@ -1,4 +1,5 @@
 import avatar from './assets/avatar.png'
+
 const data = {
     people: [
         {
