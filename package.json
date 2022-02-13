@@ -22,7 +22,6 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
     "parcel": "^2.0.1",
-    "parcel-plugin-handlebars-precompile-ts": "^1.0.0",
     "parcel-transformer-hbs": "^1.0.4",
     "sass": "^1.43.4"
   }

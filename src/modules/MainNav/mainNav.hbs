@@ -1,15 +1,15 @@
 <nav class='main-nav'>
     <div class='main-nav__controls'>
         <div class='main-nav__controls-top'> 
-            {{!-- {{> BurgerMenu}} --}}
-            {{!-- {{> TextInput}} --}}
+         
+            {{> BurgerMenu}}
+            {{> TextInput}}
         </div>
-        {{!-- {{> RadioGroup}} --}}
+        {{> RadioGroup}}
     </div>
     <ul class='main-nav__chats'>
         {{#each people}}
-            <li>yolo</li>
-            {{!-- <li> {{> ChatCard}}</li>   --}}
+          {{> ChatCard }}
         {{/each}}
     </ul>
 </nav>

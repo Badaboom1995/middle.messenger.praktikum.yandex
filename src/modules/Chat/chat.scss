@@ -1,0 +1,108 @@
+@import '../../common/styles/colors.scss';
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px;
+        border-bottom: 1px solid $milk;
+    }
+    &__user {
+        display: flex;
+        align-items: center;
+    }
+    &__user-photo {
+        border-radius: 50%;
+        margin-right: 10px;
+        width: 35px;
+        height: 35px;
+    }
+    &__user-name {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    &__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $black;
+        border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        &:hover {
+            background-color: $accent-dark;
+        }
+    }
+    &__menu-dot {
+        display: inline-block;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        margin-bottom: 0px;
+        background-color: $white;
+    }
+    &__main-area {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 24px;
+    }
+    &__message {
+        padding: 15px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: $lighter-grey;
+        border-radius: 0 15px 15px 15px;
+        max-width: 400px;
+        &--mine {
+            align-self: flex-end;
+            border-radius: 15px 15px 0 15px;
+            background-color: $accent;
+        }
+    }
+    &__send-area {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid $milk;
+    }
+    &__send-area-input {
+        flex-grow: 1;
+    }
+    &__attach-button {
+        display: block;
+        width: 52px;
+        height: 52px;
+        padding: 10px;
+        background-color: transparent;
+        background-image: url('./assets/attach.svg');
+        background-size: 32px 32px;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+    &__send-button {
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+        border-radius: 50%;
+        background-color: $accent;
+        background-image: url('./assets/arrow.svg');
+        background-size: contain;
+        background-size: 15px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        cursor: pointer;
+        &:hover {
+            background-color: $accent-dark;
+        }
+    }
+}

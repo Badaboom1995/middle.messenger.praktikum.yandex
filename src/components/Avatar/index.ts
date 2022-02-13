@@ -8,7 +8,7 @@ class Avatar extends Block {
         super({ props })
     }
     render() {
-        return template({ changeThis: 'suka', url })
+        return this.compile(template, { url })
     }
 }
 

@@ -1,16 +1,24 @@
-import Handlebars from 'handlebars/dist/handlebars.runtime'
-import SetEnterForm from '../../modules/EnterForm'
-import connect from '../../utils/connect'
-import tmpl from './enter.hbs'
+import Block from '../../framework/Block'
+import EnterForm from '../../modules/EnterForm'
+import template from './enter.hbs'
 import './enter.scss'
-
-export default (type) => {
-
-    const EnterForm = SetEnterForm(type)
-    connect([EnterForm])
-
-    const template = Handlebars.compile(tmpl)
-    const Enter = template()
-
-    return Enter
+type TEnterPage = {
+    type: 'auth' | 'reg'
 }
+class EnterPage extends Block {
+    constructor(props: TEnterPage) {
+        super({
+            props: {
+                ...props,
+                enterForm: new EnterForm({ type: props.type })
+            }
+        })
+    }
+    render() {
+        this.children.enterForm.makePartial()
+        return this.compile(template, this.props)
+    }
+
+}
+
+export default EnterPage

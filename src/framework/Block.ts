@@ -1,6 +1,7 @@
 import { EventBus } from "./EventBus"
 import { IBlock, constructorProps } from './types'
 import { v4 as makeUUID } from 'uuid';
+import * as Handlebars from 'handlebars'
 
 //TODO Сделать приватные методы и свойства
 class Block implements IBlock {
@@ -51,6 +52,10 @@ class Block implements IBlock {
 
     _componentDidMount() {
         this.componentDidMount()
+
+        Object.values(this.children).forEach((child: any) => {
+            child.dispatchComponentDidMount();
+        });
     }
 
     componentDidMount() { }
@@ -115,8 +120,9 @@ class Block implements IBlock {
         });
     }
     _getChildren(propsAndChildren) {
-        const children = {};
+        const children: any = {};
         const onlyProps = {};
+
         Object.entries(propsAndChildren).forEach(([key, value]) => {
             if (value instanceof Block) {
                 children[key] = value;
@@ -129,18 +135,23 @@ class Block implements IBlock {
     }
     _render() {
         const block = this.render();
+        this._template = block
         this._removeEvents()
         this._element.innerHTML = '';
-        // this._element.appendChild(block)
+        if (typeof block !== 'string') {
+            this._element.appendChild(block)
+        }
+
         this._addEvents();
     }
 
     render() {
         return ''
     }
-
+    makePartial() {
+        Handlebars.registerPartial(this.constructor.name, (context) => this._template(context))
+    }
     getElement() {
-        console.log(this._element)
         return this._element
     }
 
@@ -155,17 +166,18 @@ class Block implements IBlock {
         const propsAndStubs = { ...props };
 
         Object.entries(this.children).forEach(([key, child]: any) => {
-            propsAndStubs[key] = `<div data-id="${child.__id}">yo</div>`
+            propsAndStubs[key] = `<div data-id="${child.__id}"></div>`
 
         });
+
         const fragment: any = this._createDocumentElement('div');
         fragment.innerHTML = template(propsAndStubs)
 
         Object.values(this.children).forEach((child: any) => {
             const stub = fragment.querySelector(`[data-id="${child.__id}"]`);
-            console.log(typeof stub, 'stub')
-            stub.replaceWith(child.getElement());
+            stub?.replaceWith(child.getElement());
         });
+
         return fragment;
     }
     init() {

@@ -3,14 +3,14 @@
 .layout {
     display: flex;
     height: 100vh;
-
+    background-color: red;
     &__section {
         overflow: scroll;
         &--menu {
             width: 350px;
             background: linear-gradient(
                 167.22deg,
-                $accent-light 4.9%,
+                $accent-dark 4.9%,
                 $accent 108.96%
             );
         }

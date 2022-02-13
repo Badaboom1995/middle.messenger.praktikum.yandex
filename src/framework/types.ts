@@ -22,6 +22,7 @@ export interface IBlock {
     _registerEvents(EventBus): void
     _render(): void
     init(): void
+    makePartial(name: string, template: any): void
     render(): string
     props: propsType
     eventBus
