@@ -4,7 +4,7 @@
 
 **Запуск в дев режиме**: npm run dev
 
-**PR**: https://github.com/Badaboom1995/middle.messenger.praktikum.yandex/pull/1
+**PR**: https://github.com/Badaboom1995/middle.messenger.praktikum.yandex/pull/2
 
 **Дизайн** https://www.figma.com/file/GarmKivJle1JIrM1SicMYZ/Chat-(Copy)?node-id=14647%3A3
 
