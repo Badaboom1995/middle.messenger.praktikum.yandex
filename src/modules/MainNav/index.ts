@@ -16,6 +16,7 @@ const burgerMenu = new BurgerMenu({})
 class MainNav extends Block {
     constructor(props) {
         super({ tagName: 'div', props })
+        this._template = template
     }
     render() {
         chatCard.makePartial()

@@ -13,6 +13,7 @@ class EnterPage extends Block {
                 enterForm: new EnterForm({ type: props.type })
             }
         })
+        this._template = template
     }
     render() {
         this.children.enterForm.makePartial()
