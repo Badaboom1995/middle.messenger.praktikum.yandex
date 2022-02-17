@@ -6,7 +6,7 @@ import './chatCard.scss'
 class ChatCard extends Block {
     constructor(props) {
         super({ props })
-        this._template = template
+
     }
     render() {
         return template

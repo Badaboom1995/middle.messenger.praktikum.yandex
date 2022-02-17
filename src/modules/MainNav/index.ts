@@ -19,8 +19,9 @@ class MainNav extends Block {
             }
         })
     }
+
     render() {
-        chatCard.makePartial()
+
         return template
     }
 
