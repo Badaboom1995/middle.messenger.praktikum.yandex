@@ -1,22 +1,22 @@
 import template from './input.hbs';
 import './input.scss';
 import Block from '../../framework/Block';
+import { v4 as makeUUID } from 'uuid';
+
 
 type TInputProps = {
-    label: string
-    placeholder: string
-    type: string
+    label?: string
+    placeholder?: string
+    type?: string
 }
 
 class Input extends Block {
     constructor(props: TInputProps) {
-        super({ props })
-        this.props = props
-        this._template = template
+        const inputId = makeUUID()
+        super({ props: { ...props, inputId } })
     }
     render() {
-        const { label, placeholder, type } = this.props
-        return this.compile(template, { label, placeholder, type })
+        return template
     }
 }
 

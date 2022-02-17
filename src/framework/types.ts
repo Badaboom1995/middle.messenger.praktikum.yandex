@@ -2,8 +2,8 @@
 type propsValue = string | number | null | undefined | Record<string, any>
 
 export type propsType = Record<string, propsValue>
-// TODO any
-export type constructorProps = { tagName?: string, props: Record<string, any> }
+// TODO any, TODO grow: это костыль, нужно сделать корректное создание обертки
+export type constructorProps = { tagName?: string, props: Record<string, any>, grow?: boolean }
 export interface IBlock {
     _element: HTMLElement
     _meta: {
@@ -23,9 +23,12 @@ export interface IBlock {
     _render(): void
     init(): void
     makePartial(name: string, template: any): void
-    render(): string
+    // TODO any
+    render(): any
     props: propsType
     eventBus
+    // TODO костыль
+    grow?: boolean
 }
 
 // TODO any to generic or smth

@@ -5,10 +5,10 @@ import url from '../../assets/avatar.png'
 
 class Avatar extends Block {
     constructor(props) {
-        super({ props })
+        super({ props: { ...props, url } })
     }
     render() {
-        return this.compile(template, { url })
+        return template
     }
 }
 

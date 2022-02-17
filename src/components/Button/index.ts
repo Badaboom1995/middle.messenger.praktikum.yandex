@@ -10,7 +10,7 @@ class Button extends Block {
     }
     render() {
         const { text } = this.props
-        return this.compile(template, { text })
+        return template
     }
 }
 

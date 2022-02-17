@@ -2,11 +2,12 @@ import { EventBus } from "./EventBus"
 import { IBlock, constructorProps } from './types'
 import { v4 as makeUUID } from 'uuid';
 import * as Handlebars from 'handlebars'
+import isEmpty from "../utils/isEmpty";
 
 //TODO Сделать приватные методы и свойства
 class Block implements IBlock {
 
-    eventBus; props; _template; _element; _meta; __id; children
+    eventBus; props; _template; _element; _meta; __id; children; grow
     listeners = []
 
     static EVENTS = {
@@ -19,15 +20,33 @@ class Block implements IBlock {
         FLOW_RENDER: "flow:render"
     };
 
-    constructor({ tagName = 'div', props }: constructorProps) {
-        const { children, onlyProps } = this._getChildren(props);
-        this.children = children;
+    constructor({ tagName = 'div', props: propsAndChildren, grow = false }: constructorProps) {
+        const { children, props } = this._splitPropsAndChildren(propsAndChildren);
+        this.grow = grow
         this.__id = makeUUID()
         this._meta = { tagName }
-        this.props = this._makePropsProxy(onlyProps)
+        this.children = this._makePropsProxy(children);
+        this.props = this._makePropsProxy(props)
+
         this.eventBus = new EventBus(this)
         this._registerEvents(this.eventBus)
+
         this.eventBus.emit(Block.EVENTS.INIT)
+    }
+
+    _splitPropsAndChildren(propsAndChildren) {
+        const children: any = {};
+        const props = {};
+
+        Object.entries(propsAndChildren).forEach(([key, value]) => {
+            if (value instanceof Block) {
+                children[key] = value;
+            } else {
+                props[key] = value;
+            }
+        });
+
+        return { children, props };
     }
 
     _registerEvents(eventBus) {
@@ -44,6 +63,11 @@ class Block implements IBlock {
         const { tagName } = this._meta
         this._element = document.createElement(tagName)
         this._element.setAttribute('data-id', this.__id)
+        // console.log(this.constructor.name, this.grow)
+        if (this.grow) {
+            this._element.classList.add('grow')
+        }
+
     }
     _componentWillMount() {
         this.componentWillMount()
@@ -119,55 +143,40 @@ class Block implements IBlock {
             this._element.removeEventListener(eventName, callback);
         });
     }
-    _getChildren(propsAndChildren) {
-        const children: any = {};
-        const onlyProps = {};
-
-        Object.entries(propsAndChildren).forEach(([key, value]) => {
-            if (value instanceof Block) {
-                children[key] = value;
-            } else {
-                onlyProps[key] = value;
-            }
-        });
-
-        return { children, onlyProps };
-    }
     _render() {
-        const block = this.render();
+        const block = this._compile(this.render())
         this._template = block
         this._removeEvents()
-        this._element.innerHTML = '';
+        this._element.innerHTML = ''
         if (typeof block !== 'string') {
             this._element.appendChild(block)
         }
-
         this._addEvents();
     }
+    render() { }
 
-    render() {
-        return ''
-    }
     makePartial() {
         Handlebars.registerPartial(this.constructor.name, (context) => this._template(context))
     }
+
     getElement() {
         return this._element
     }
 
-    setProps = nextProps => {
-        if (!nextProps) {
-            return;
+    setProps = (nextProps: Record<string, unknown>) => {
+        const { props, children } = this._splitPropsAndChildren(nextProps)
+        if (!isEmpty(props)) {
+            Object.assign(this.props, props);
         }
-        Object.assign(this.props, nextProps);
+        if (!isEmpty(props)) {
+            Object.assign(this.children, children);
+        }
     };
 
-    compile(template, props) {
-        const propsAndStubs = { ...props };
-
+    _compile(template) {
+        const propsAndStubs = { ...this.props, ...this.children };
         Object.entries(this.children).forEach(([key, child]: any) => {
             propsAndStubs[key] = `<div data-id="${child.__id}"></div>`
-
         });
 
         const fragment: any = this._createDocumentElement('div');
@@ -175,6 +184,7 @@ class Block implements IBlock {
 
         Object.values(this.children).forEach((child: any) => {
             const stub = fragment.querySelector(`[data-id="${child.__id}"]`);
+
             stub?.replaceWith(child.getElement());
         });
 

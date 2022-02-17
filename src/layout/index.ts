@@ -11,7 +11,7 @@ class Layout extends Block {
         super({ tagName: 'div', props })
     }
     render() {
-        return this.compile(template, this.props)
+        return template
     }
 
 }

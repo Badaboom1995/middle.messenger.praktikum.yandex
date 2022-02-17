@@ -9,7 +9,7 @@ class ChatCard extends Block {
         this._template = template
     }
     render() {
-        return this.compile(template, this.props)
+        return template
     }
 
 }

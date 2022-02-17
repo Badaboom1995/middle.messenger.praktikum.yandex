@@ -7,7 +7,7 @@ class Profile extends Block {
 
     }
     render() {
-        return this.compile(tmpl, this.props)
+        return tmpl
     }
 
 }
