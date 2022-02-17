@@ -1,7 +1,6 @@
 import './mainNav.scss'
 import template from './mainNav.hbs'
 import TextInput from './components/TextInput'
-import ChatCard from '../../components/ChatCard'
 import RadioGroup from './components/RadioGroup'
 import BurgerMenu from './components/BurgerMenu'
 import Block from '../../framework/Block'
@@ -52,13 +51,6 @@ class MainNav extends Block {
                     ]
                 }),
                 TextInput: new TextInput({ grow: true }),
-                ChatCard: new ChatCard({
-                    name: 'Nils',
-                    avatar,
-                    online: true,
-                    messages: 5,
-                }),
-
             }
         })
     }
