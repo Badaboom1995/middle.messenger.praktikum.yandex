@@ -38,7 +38,7 @@ class Block implements IBlock {
         const children: any = {};
         const props = {};
 
-        Object.entries(propsAndChildren).forEach(([key, value]) => {
+        Object.entries(propsAndChildren).forEach(([key, value]: [string, any]) => {
             if (value instanceof Block) {
                 children[key] = value;
             } else {
@@ -63,7 +63,6 @@ class Block implements IBlock {
         const { tagName } = this._meta
         this._element = document.createElement(tagName)
         this._element.setAttribute('data-id', this.__id)
-        // console.log(this.constructor.name, this.grow)
         if (this.grow) {
             this._element.classList.add('grow')
         }

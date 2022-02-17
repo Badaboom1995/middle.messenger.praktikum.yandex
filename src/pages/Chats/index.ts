@@ -16,7 +16,7 @@ const profileBlock = new Profile({
     }
 })
 const chat = new Chat({})
-const mainNav = new MainNav(chats)
+const mainNav = new MainNav({})
 
 export default new Layout({ aside: profileBlock, nav: mainNav, main: chat })
 

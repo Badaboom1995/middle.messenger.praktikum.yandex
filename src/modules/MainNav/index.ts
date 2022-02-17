@@ -5,23 +5,65 @@ import ChatCard from '../../components/ChatCard'
 import RadioGroup from './components/RadioGroup'
 import BurgerMenu from './components/BurgerMenu'
 import Block from '../../framework/Block'
+import avatar from '../../assets/avatar.png'
 
 
-const chatCard = new ChatCard({})
+
 class MainNav extends Block {
     constructor(props) {
         super({
             props: {
                 ...props,
+                people: [
+                    {
+                        name: 'Nils',
+                        avatar,
+                        online: true,
+                        messages: 5,
+                    },
+                    {
+                        name: 'Yehuda',
+                        avatar,
+                        online: false,
+                        messages: 0,
+                    },
+                    {
+                        name: 'Samanta',
+                        avatar,
+                        online: false,
+                        messages: 0,
+                    },
+                ],
                 BurgerMenu: new BurgerMenu({}),
-                RadioGroup: new RadioGroup({ items: props.items }),
+                RadioGroup: new RadioGroup({
+                    items: [
+                        {
+                            label: 'robots',
+                        },
+                        {
+                            label: 'people',
+                        },
+                        {
+                            label: 'groups',
+                        },
+                        {
+                            label: 'new',
+                        },
+                    ]
+                }),
                 TextInput: new TextInput({ grow: true }),
+                ChatCard: new ChatCard({
+                    name: 'Nils',
+                    avatar,
+                    online: true,
+                    messages: 5,
+                }),
+
             }
         })
     }
 
     render() {
-
         return template
     }
 

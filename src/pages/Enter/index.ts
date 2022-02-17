@@ -16,7 +16,6 @@ class EnterPage extends Block {
                 enterForm: getEnterForm(props.type)
             }
         })
-        this._template = template
     }
     render() {
         return template
