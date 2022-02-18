@@ -48,7 +48,7 @@ class Block implements IBlock {
 
         return { children, props };
     }
-
+    // Upgrade. DRY
     _registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CWM, this._componentWillMount.bind(this));
@@ -114,11 +114,10 @@ class Block implements IBlock {
     }
 
     _makePropsProxy(props) {
-        const self = this;
         const propsProxy = new Proxy(props, {
-            set(target, prop, value) {
+            set: (target, prop, value) => {
                 target[prop] = value;
-                self.eventBus.emit(Block.EVENTS.FLOW_RENDER)
+                this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
                 return true;
             },
             deleteProperty(target, prop) {
@@ -130,9 +129,15 @@ class Block implements IBlock {
     }
     _addEvents() {
         const { events = {} } = this.props;
+        const customTarget = this._element.querySelector('[data-events]')
+        const customEvents = customTarget?.dataset.events.split(',')
         Object.keys(events).forEach(eventName => {
             const callback = events[eventName]
-            this._element.addEventListener(eventName, callback);
+            if (customEvents?.includes(eventName)) {
+                customTarget.addEventListener(eventName, callback)
+            } else {
+                this._element.addEventListener(eventName, callback);
+            }
         });
     }
     _removeEvents() {
@@ -143,12 +148,13 @@ class Block implements IBlock {
         });
     }
     _render() {
+        const blockId = this._element.dataset.id
         const block = this._compile(this.render())
-        this._template = block
+        block.setAttribute('data-id', blockId)
         this._removeEvents()
         this._element.innerHTML = ''
         if (typeof block !== 'string') {
-            this._element.appendChild(block)
+            this._element = block
         }
         this._addEvents();
     }
@@ -175,7 +181,7 @@ class Block implements IBlock {
     _compile(template) {
         const propsAndStubs = { ...this.props, ...this.children };
         Object.entries(this.children).forEach(([key, child]: any) => {
-            propsAndStubs[key] = `<div data-id="${child.__id}"></div>`
+            propsAndStubs[key] = `<div data-id="${child.__id}" data-role='dich'></div>`
         });
 
         const fragment: any = this._createDocumentElement('div');
@@ -187,7 +193,16 @@ class Block implements IBlock {
             stub?.replaceWith(child.getElement());
         });
 
-        return fragment;
+        if (fragment.children.length > 1) {
+            throw new Error(`
+            Template must return only one node but return this shit:
+
+            ${fragment.outerHTML}
+            
+            `)
+        }
+
+        return fragment.children[0];
     }
     init() {
         this.eventBus.emit(Block.EVENTS.FLOW_CWM)
