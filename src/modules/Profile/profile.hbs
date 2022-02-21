@@ -1,0 +1,22 @@
+<div class='profile'>
+    <section class='profile__header'>
+        <div class='profile__avatar-wrapper'>{{{ avatar }}} </div>
+        <p class='profile__name'>{{name}}</p>
+        <span class='profile__status'>{{status}}</span>
+    </section>
+    <section class='profile__info-block'>
+        <div class='profile__info-title'>
+            <span class="profile__info-title-text">Основное</span>
+            <button class='profile__info-title-button'>изменить</button>
+        </div>
+        <div class="profile__info-content">
+            {{#each general}}
+             <div class='profile__base-row'>
+                <span class='profile__base-name'>{{name}}</span>
+                <span class='profile__base-value'>{{value}}</span>
+            </div>
+            {{/each}}
+        </div>
+        
+    </section>
+</div>

@@ -1,0 +1,30 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "default": "index.js",
+  "author": "Badavoo",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"yarn\" \"parcel build static/index.html\" \"node ./server.js \"",
+    "dev": "parcel static/index.html",
+    "build": "./node_modules/.bin/parcel build static/index.html"
+  },
+  "dependencies": {
+    "concurrently": "^6.4.0",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "normalize.css": "^8.0.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.0.1",
+    "@parcel/transformer-sass": "^2.0.1",
+    "@types/handlebars": "^4.1.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.9.0",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "parcel": "^2.0.1",
+    "parcel-transformer-hbs": "^1.0.4",
+    "sass": "^1.43.4"
+  }
+}

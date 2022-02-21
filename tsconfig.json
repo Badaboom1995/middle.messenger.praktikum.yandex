@@ -1,0 +1,18 @@
+{
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "sourceMap": false,
+    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "compilerOptions": {
+        "lib": ["ES2017", "DOM"],
+        "experimentalDecorators": true,
+        "jsxImportSource": "preact",
+        "types": ["handlebars"],
+        "baseUrl": "./src/",
+        "paths": {
+            "handlebars": ["handlebars/dist/handlebars.min.js"]
+           }
+      }
+}

@@ -1,0 +1,10 @@
+<div class='chat-card {{extraClass}}'>
+    <div class='chat-card__avatar-wrapper'>
+         <img src={{avatar}} alt='' class='chat-card__avatar-image'>
+         {{#if online}}<span class='chat-card__online'/> {{/if}}
+    </div>
+    <p class='chat-card__name'>{{name}}</p>
+    <p class='chat-card__message'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quibusdam sed eius eum ut fugit obcaecati vero fugiat quas labore.</p>
+    <span class='chat-card__time'>15:00</span>
+     {{#if messages}}<span class='chat-card__counter'>{{messages}}</span>{{/if}}
+</div>

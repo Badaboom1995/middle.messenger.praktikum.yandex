@@ -1,0 +1,42 @@
+@import '../common/styles/colors.scss';
+
+.layout {
+    display: flex;
+    height: 100vh;
+    background-color: red;
+    &__section {
+        overflow: scroll;
+        &--menu {
+            width: 350px;
+            background: linear-gradient(
+                167.22deg,
+                $accent-dark 4.9%,
+                $accent 108.96%
+            );
+        }
+        &--main {
+            position: relative;
+            flex-grow: 1;
+            background-color: $white;
+        }
+        &--aside {
+            width: 350px;
+            background-color: $dark-grey;
+        }
+    }
+    &__main-default {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%);
+        width: 600px;
+        text-align: center;
+        &-quote {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            color: $light-grey;
+            margin-bottom: 30px;
+        }
+    }
+}
