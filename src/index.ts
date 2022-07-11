@@ -4,29 +4,50 @@ import './common/styles/global.scss'
 import Enter from './pages/Enter'
 import ErrorPage from './pages/Error'
 import Chats from './pages/Chats'
-import { render } from './framework/Render'
+import Router from './router/Router'
+import { makeRequest } from './utils/makeRequest'
+import { getUser } from './services/user'
+import { getChats } from './services/chats'
 
-const notFoundData = { title: '404', subtitle: 'Потерялись' }
-const error = { title: '500', subtitle: 'Уже чиним' }
+const authForm = new Enter({ type: 'auth' })
+const regForm = new Enter({ type: 'reg' })
+const errorPage = new ErrorPage({ title: '500', subtitle: 'Уже чиним' })
+const notFound = new ErrorPage({ title: '404', subtitle: 'Потерялись' })
 
-const choosePage = () => {
-    switch (window.location.pathname) {
-        case '/':
-            return Chats
-        case '/chat':
-            return Chats
-        case '/auth':
-            return new Enter({ type: 'auth' })
-        case '/reg':
-            return new Enter({ type: 'reg' })
-        case '/500':
-            return new ErrorPage(error)
-        default:
-            return new ErrorPage(notFoundData)
-    }
-}
+const router = new Router()
+const loading = true
 
 
+router
+    .use('/', Chats)
+    .use('/chats', Chats)
+    .use('/auth', authForm)
+    .use('/reg', regForm)
+    .use('/500', errorPage)
+    .setNotFound(notFound)
+    .setPublic('/reg', regForm)
+    .setPublic('/auth', authForm)
+    .setPublic('/', authForm)
+    .start()
+
+    getUser().then((result) => {
+        router.allowPrivate()
+        router.go('/')
+    })
 
 
-render('#root', choosePage())
+
+
+// router
+//     .use('/', Chats)
+//     .use('/chats', Chats)
+//     .use('/auth', authForm)
+//     .use('/reg', regForm)
+//     .use('/reg', regForm)
+//     .use('/500', errorPage)
+//     .setDefault(notFound)
+//     .start()
+
+
+
+

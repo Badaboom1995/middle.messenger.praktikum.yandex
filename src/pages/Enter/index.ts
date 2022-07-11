@@ -7,7 +7,6 @@ type TEnterPage = {
     type: 'auth' | 'reg'
 }
 
-
 class EnterPage extends Block {
     constructor(props: TEnterPage) {
         super({

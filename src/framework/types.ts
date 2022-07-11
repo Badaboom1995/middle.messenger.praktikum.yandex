@@ -29,6 +29,8 @@ export interface IBlock {
     eventBus
     // TODO костыль
     grow?: boolean
+    inited?: boolean
+
 }
 
 // TODO any to generic or smth

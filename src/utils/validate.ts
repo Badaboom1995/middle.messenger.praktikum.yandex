@@ -1,3 +1,5 @@
+import Router from '../router/Router'
+
 const validate = {
     field: {
         focus: (e) => {
@@ -24,7 +26,7 @@ const validate = {
                 alert('Заполните все поля')
                 return
             }
-            callback()
+            callback(e)
         },
     }),
 }

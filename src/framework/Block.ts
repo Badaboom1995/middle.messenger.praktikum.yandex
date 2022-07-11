@@ -7,7 +7,7 @@ import isEmpty from "../utils/isEmpty";
 //TODO Сделать приватные методы и свойства
 class Block implements IBlock {
 
-    eventBus; props; _template; _element; _meta; __id; children; grow
+    eventBus; props; _template; _element; _meta; __id; children; grow; inited
     listeners = []
 
     static EVENTS = {
@@ -24,6 +24,7 @@ class Block implements IBlock {
         const { children, props } = this._splitPropsAndChildren(propsAndChildren);
         this.grow = grow
         this.__id = makeUUID()
+        this.inited = false
         this._meta = { tagName }
         this.children = this._makePropsProxy(children);
         this.props = this._makePropsProxy(props)
@@ -37,7 +38,6 @@ class Block implements IBlock {
     _splitPropsAndChildren(propsAndChildren) {
         const children: any = {};
         const props = {};
-
         Object.entries(propsAndChildren).forEach(([key, value]: [string, any]) => {
             if (value instanceof Block) {
                 children[key] = value;
@@ -154,12 +154,17 @@ class Block implements IBlock {
         this._removeEvents()
         this._element.innerHTML = ''
         if (typeof block !== 'string') {
+            if(this.inited){
+                this._element.appendChild(block)
+            }
             this._element = block
         }
         this._addEvents();
     }
     render() { }
-
+    resetProps(name, value) {
+        this.props[name] = value
+    }
     makePartial() {
         Handlebars.registerPartial(this.constructor.name, (context) => this._template(context))
     }
@@ -181,9 +186,8 @@ class Block implements IBlock {
     _compile(template) {
         const propsAndStubs = { ...this.props, ...this.children };
         Object.entries(this.children).forEach(([key, child]: any) => {
-            propsAndStubs[key] = `<div data-id="${child.__id}" data-role='dich'></div>`
+            propsAndStubs[key] = `<div data-id="${child.__id}"></div>`
         });
-
         const fragment: any = this._createDocumentElement('div');
         fragment.innerHTML = template(propsAndStubs)
 
@@ -205,6 +209,7 @@ class Block implements IBlock {
         return fragment.children[0];
     }
     init() {
+        this.inited = true
         this.eventBus.emit(Block.EVENTS.FLOW_CWM)
         this._createWrapper()
         this.eventBus.emit(Block.EVENTS.FLOW_RENDER)

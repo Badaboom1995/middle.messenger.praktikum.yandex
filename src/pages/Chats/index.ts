@@ -4,7 +4,8 @@ import MainNav from '../../modules/MainNav'
 import Profile from '../../modules/Profile'
 import Chat from '../../modules/Chat'
 import Avatar from '../../components/Avatar'
-import { profile, chats } from './context'
+import { profile } from './context'
+import { getChats } from '../../services/chats'
 
 const profileBlock = new Profile({
     ...profile,
@@ -15,8 +16,16 @@ const profileBlock = new Profile({
         }
     }
 })
+let chats = [{ name: 'ololo' }]
+
+setTimeout(() => {
+    chats = [{ name: 'ololo' }, { name: 'wwwdwdd'}]
+}, 1000)
+
+
 const chat = new Chat({})
-const mainNav = new MainNav({})
+
+const mainNav = new MainNav({chats:[{ name: 'ololo' }]})
 
 export default new Layout({ aside: profileBlock, nav: mainNav, main: chat })
 
